@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+requests = "*"
+pandas = "*"
+jupyter = "*"
+police-api-client = "*"
+sqlalchemy = "*"
+mysql-connector-python = "*"
+mysql = "*"
+boto3 = "*"
+awscli = "*"
+snowflake-connector-python = "==2.7.6"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"
