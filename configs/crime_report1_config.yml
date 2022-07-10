@@ -1,0 +1,70 @@
+# configuration specific to the source
+source:
+    src_columns: ['month','location.street.id', 'location.street.name','category', 'location_type',  'location.latitude',
+        'location.longitude']
+    src_col_date: '2022-02' # The month requested
+    src_url_org: 'https://data.police.uk/api/crimes-street/all-crime?'
+    src_latlong: 'latlong.csv'
+
+
+# configuration specific to creating s3 connections
+s3:
+  access_key: 'AWS_ACCESS_KEY_ID'
+  secret_key: 'AWS_SECRET_ACCESS_KEY'
+  src_endpoint_url: 'https://s3.amazonaws.com'
+  trg_endpoint_url: 'https://s3.amazonaws.com'
+  trg_bucket: 'crime-2022'
+
+# configuration specific to creating snowflake connections
+snwflk:
+  user: 'LITAO123'
+  password: '158158970809atAT!'
+  account: 'ew50302.eu-west-2.aws'
+  warehouse: "COMPUTE_WH"
+  database: "CRIME_UK"
+
+
+# configuration specific to the target S3
+aws_target:
+  s3_trg_name: 'crime-2022'
+  s3_trg_key: 'crime_count_monthly_report_'
+  s3_trg_key_date_format: '%Y%m%d_%H%M%S'
+
+# configuration specific to the target snowflake
+snw_target:
+  sn_from_aws: True
+  sn_table_name: 'crime_info'
+  sn_pattern: "'crime.*.csv'"
+  sn_stage: 'S3_3'
+  sn_truncate: True
+  sn_create: False
+
+
+# target data format
+trg_format:
+  trg_column: {'month':'month','location.street.id': 'street_id', 'location.street.name':'street_name',
+                "category": "crime_category", 'location_type':'location_type', 
+              'location.latitude':'location_latitude', 'location.longitude':'location_longitude'}
+  trg_file_format: '.csv'
+  trg_date_format: '%Y-%m'
+
+
+# Configuration specific to the meta file 
+meta: 
+  meta_key: 'meta_file.csv'
+  
+# logging configuration
+logging:
+  version: 1
+  formatters:
+    crime:
+      format: 'Crime Transformer - %(asctime)s - %(levelname)s - %(message)s'
+  handlers:
+    console:
+      class: logging.StreamHandler
+      formatter: crime
+      level: DEBUG
+  root: 
+    level: DEBUG
+    handlers: [console]
+    

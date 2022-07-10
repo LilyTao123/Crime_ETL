@@ -14,6 +14,8 @@ mysql = "*"
 boto3 = "*"
 awscli = "*"
 snowflake-connector-python = "==2.7.6"
+pyyaml = "*"
+snowflake-sqlalchemy = "*"
 
 [dev-packages]
 
