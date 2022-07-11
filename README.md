@@ -5,4 +5,4 @@
 
 3. src_col_date is the requested month, which is set in crime_report1_config.yml file.
 
-4. latlong.csv includes the area 
+4. latlong.csv provides the latitude and longitude of the requested area.
