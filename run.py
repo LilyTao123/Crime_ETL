@@ -12,8 +12,6 @@ from crime_rate.transformer.crime_transformer import CrimeETL, CrimeSourceConfig
 '''
 Connecting to AWS is needed. In this case, I have set AWS key as environment variable.
 Detailed information of my AWS account is (This is an eduation account)
-access_key: 'AKIAULQTT7FBEM5ASAN5'
-secret_key: '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'
 '''
 
 def main(report_result = False):
